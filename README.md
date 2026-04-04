@@ -23,11 +23,8 @@ On top of this core layer, additional packages extend the framework’s capabili
 
 The framework follows a **generated-data driven workflow**, where robot structures and intermediate results are stored in YAML format. These runtime-generated files are organized in a user-defined `smm_data` directory, which acts as a shared data layer between nodes and packages.
 
-Overall, the architecture promotes modularity, extensibility, and clear separation between:
-- robot modeling (core),
-- structure generation (synthesis),
-- performance evaluation (metrics),
-- and visualization (tools).
+To be updated...
+
 ## Repository Structure
 
 ## Package Roles
