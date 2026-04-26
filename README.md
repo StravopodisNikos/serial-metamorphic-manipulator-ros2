@@ -37,13 +37,11 @@ The framework is organized as a set of modular ROS 2 repositories, each covering
 - [`smm_synthesis`](https://github.com/StravopodisNikos/smm_synthesis)  
   Structure synthesis and robot generation package for creating valid SMM configurations based on predefined rules and user-defined YAML inputs.
 
-- `smm_viz_tools`  
+- [`smm_viz_tools`](https://github.com/StravopodisNikos/smm_viz_tools)  
   Visualization package for RViz-based inspection of robot structures, frames, and computed results.  
-  *(link to be added)*
-
-- `smm_metrics`  
+  
+- [`smm_metrics`](https://github.com/StravopodisNikos/smm_metrics) 
   Performance evaluation package containing metrics for robot analysis and comparison.  
-  *(link to be added)*
 
 ## Package Roles
 
@@ -51,10 +49,66 @@ The repositories are designed to work together as a modular framework:
 
 - `smm_screws` provides the core mathematical and computational backbone.
 - `smm_synthesis` generates robot structures and runtime model data.
-- `smm_metrics` evaluates generated robots using performance measures.
 - `smm_viz_tools` visual tools
+- `smm_metrics` evaluates generated robots using performance measures.
 
-## Workspace Setup
+## Key Dependencies
+
+The framework relies on the following main dependencies for ROS 2 integration, robot modeling, numerical computation, and visualization.
+
+### ROS 2 Packages
+- `rclcpp` — Core ROS 2 C++ client library
+- `sensor_msgs` — Joint-state transport and standard robot state messaging
+- `geometry_msgs` — Pose, twist, and vector message types
+- `visualization_msgs` — RViz marker and marker array visualization
+- `std_msgs` — Standard ROS 2 message primitives
+- `ament_cmake` — ROS 2 CMake build system support
+- `ament_cmake_python` — Python node install support where needed
+- `launch` — ROS 2 launch system
+- `launch_ros` — ROS 2 node launching utilities
+- `ament_index_python` — Package-share directory lookup in Python launch files
+
+### Robot Description / Kinematics / Dynamics
+- `urdf` — Robot model description
+- `xacro` — Parametric robot description generation
+- `robot_state_publisher` — TF publishing from URDF
+- `joint_state_publisher` / custom joint GUI pipelines — Joint-state driven visualization
+- `tf2` / `tf2_ros` — Transform handling where required by the ROS 2 pipeline
+- `kdl_parser` — URDF-to-KDL conversion for extractor/debug utilities
+- `orocos_kdl` — KDL-based forward-kinematics and frame extraction utilities
+
+### C++ / Numerical Libraries
+- `Eigen3` — Core linear algebra, transformations, SVD, eigensolvers, and matrix operations
+- `yaml-cpp` — YAML parsing for synthesized robot data, twists, transforms, inertias, and assembly parameters
+- Standard C++ library — memory management, containers, exceptions, streams, algorithms, and numeric utilities
+
+### Visualization / GUI
+- `rviz2` — 3D visualization environment
+- `visualization_msgs` — Ellipsoids, axes, TCP arrows, and debug markers
+- Custom Python GUI node (`smm_joint_motion_gui_ndof_node.py`) — interactive input of `q`, `dq`, `ddq`
+
+### Custom Package-Level Interfaces
+- `smm_screws` — Core screw-theory kinematics and dynamics library
+- `smm_metrics` — Manipulability and other analytical metrics
+- `smm_viz_tools` — Visualization and debug utilities
+- `smm_synthesis` — Synthesis pipeline, YAML generation, and integration launch files
+
+### Typical System Dependencies
+On Ubuntu/ROS 2 systems, the following are typically required through apt:
+
+- `libeigen3-dev`
+- `libyaml-cpp-dev`
+- ROS 2 packages for:
+  - `rclcpp`
+  - `sensor-msgs`
+  - `geometry-msgs`
+  - `visualization-msgs`
+  - `robot-state-publisher`
+  - `xacro`
+  - `joint-state-publisher`
+  - `rviz2`
+  - `kdl-parser`
+  - `orocos-kdl`
 
 ## Installation and Build
 
@@ -72,13 +126,23 @@ git clone https://github.com/StravopodisNikos/smm_metrics.git
 git clone https://github.com/StravopodisNikos/smm_viz_tools.git
 ```
 
-## Example Workflow
+To build:
+```text
+cd ~/ros2_ws/
+colcon build --packages-select smm_screws smm_viz_tools smm_synthesis smm_metrics
+source install/setup.bash
+```
+## Workspace Setup
+
+The local folder should look something like this:
+
+![Local PC View](docs/images/folder_structure.png)
 
 ## Current Status
 
-## Roadmap
-
-## Media / Demonstrations
+- Finished core upgrade to ROS2.
+- Next to do: control and gazebo integration.
+- Need to give examples for non-ros library usage.
 
 ## License
 
