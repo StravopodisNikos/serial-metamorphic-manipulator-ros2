@@ -1,5 +1,10 @@
 # Serial Metamorphic Manipulator ROS2
 
+![ROS2](https://img.shields.io/badge/ROS2-Kilted-blue)
+![Framework](https://img.shields.io/badge/type-modular%20framework-blueviolet)
+![Status](https://img.shields.io/badge/status-active%20development-orange)
+![License](https://img.shields.io/badge/license-BSD--3--Clause-green)
+
 A modular ROS 2 software framework for the subclass of Serial Metamorphic Manipulators. Here all info for using each repo are presented. This is your start-point for SMMs!!!
 
 ## Overview
