@@ -1,6 +1,7 @@
 # Serial Metamorphic Manipulator ROS2
 
 ![ROS2](https://img.shields.io/badge/ROS2-Kilted-blue)
+![Gazebo Sim](https://img.shields.io/badge/Gazebo%20Sim-Ionic-orange)
 ![Framework](https://img.shields.io/badge/type-modular%20framework-blueviolet)
 ![Status](https://img.shields.io/badge/status-active%20development-orange)
 ![License](https://img.shields.io/badge/license-BSD--3--Clause-green)
@@ -32,9 +33,11 @@ The framework follows a **generated-data driven workflow**, where robot structur
 
 To be updated...
 
-## Repository Structure
+## Software stack structure
 
 The framework is organized as a set of modular ROS 2 repositories, each covering a distinct part of the SMM software stack.
+
+### Main hub (modelling, evaluation, visualization)
 
 - [`smm_screws`](https://github.com/StravopodisNikos/smm_screws)  
   Core screw-theory package providing robot representations, YAML-based loading utilities, robot context abstractions, and analytical kinematics/dynamics tools.
@@ -48,6 +51,11 @@ The framework is organized as a set of modular ROS 2 repositories, each covering
 - [`smm_metrics`](https://github.com/StravopodisNikos/smm_metrics) 
   Performance evaluation package containing metrics for robot analysis and comparison.  
 
+### Control hub (simulation, controllers, hardware)
+
+- [`smm_gazebo_sim`](https://github.com/StravopodisNikos/smm_gazebo_sim) 
+  Gazebo simulation tools. Robot spawn, ROS default controllers.
+
 ## Package Roles
 
 The repositories are designed to work together as a modular framework:
@@ -56,6 +64,7 @@ The repositories are designed to work together as a modular framework:
 - `smm_synthesis` generates robot structures and runtime model data.
 - `smm_viz_tools` visual tools
 - `smm_metrics` evaluates generated robots using performance measures.
+- `smm_gazebo_sim` provides tools for gazebo simulation-works along `smm_synthesis`.
 
 ## Key Dependencies
 
@@ -98,6 +107,10 @@ The framework relies on the following main dependencies for ROS 2 integration, r
 - `smm_viz_tools` — Visualization and debug utilities
 - `smm_synthesis` — Synthesis pipeline, YAML generation, and integration launch files
 
+### Simulation
+
+- Under development!
+
 ### Typical System Dependencies
 On Ubuntu/ROS 2 systems, the following are typically required through apt:
 
@@ -139,14 +152,19 @@ source install/setup.bash
 ```
 ## Workspace Setup
 
-The local folder should look something like this:
+The local folder should look something like this (no control):
 
-![Local PC View](docs/images/folder_structure.png)
+![Local PC View 1](docs/images/folder_structure.png)
+
+The local folder should look something like this (with control hub stack):
+
+![Local PC View 2](docs/images/folder_structure_control2.png)
+![Local PC View 2](docs/images/folder_structure_control.png)
 
 ## Current Status
 
 - Finished core upgrade to ROS2.
-- Next to do: control and gazebo integration.
+- On progress: control and gazebo integration.
 - Need to give examples for non-ros library usage.
 
 ## License
